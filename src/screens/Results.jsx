@@ -13,7 +13,7 @@ export default function Results({ round, scores, onRematch, onSetup }) {
         </div>
         {!result.caught && <img className="bolt bolt-outcome" src="rayo.png" alt="" />}
         <h2 className="outcome-title">
-          {result.caught ? 'Ziztubizian gana' : 'Gana la ziztupostorra'}
+          {result.caught ? 'Ziztubizian gana' : 'Gana ziztupostor'}
         </h2>
         {accusedName && (
           <p className="outcome-sub">
