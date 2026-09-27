@@ -126,7 +126,20 @@ export default function App() {
 
   const packs = useMemo(() => {
     const base = privatePacks?.length ? privatePacks : PACKS
-    return [...base, ...customPacks]
+    // Con bloques privados se añade TODO MEZCLADO: todas las palabras juntas
+    const mixed = privatePacks?.length
+      ? [
+          {
+            id: 'todo-mezclado',
+            name: 'TODO MEZCLADO',
+            img: 'rayo.png',
+            g1: '#4a4a4e',
+            g2: '#1c1c1e',
+            words: base.flatMap((p) => p.words),
+          },
+        ]
+      : []
+    return [...mixed, ...base, ...customPacks]
   }, [customPacks, privatePacks])
 
   function startRound(cfg) {
