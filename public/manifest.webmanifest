@@ -1,7 +1,7 @@
 {
   "name": "ZIZTUPOSTOR",
   "short_name": "ZIZTUPOSTOR",
-  "description": "El juego de la ziztupostorra de ziztubizian",
+  "description": "El juego de la ziztupostor de ziztubizian",
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",

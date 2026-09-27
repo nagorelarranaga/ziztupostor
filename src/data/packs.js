@@ -128,24 +128,6 @@ const viajes = [
   p('Escala de 8 horas', 'esperar'),
 ]
 
-const cosasDeGroupi = [
-  p('Group chat', '99+ mensajes'),
-  p('Meme', 'humor'),
-  p('Story', 'dura 24 horas'),
-  p('Video llamada', 'por pantalla'),
-  p('Audio de 5 minutos', 'chapa'),
-  p('Quedada que nunca pasa', 'a ver si'),
-  p('Plan de última hora', 'improvisado'),
-  p('Spoiler', 'que no te lo cuenten'),
-  p('Foto grupal', 'una más y ya'),
-  p('Broma interna', 'solo nosotras'),
-  p('Screenshot', 'la prueba'),
-  p('Emoji de risa', 'reacción'),
-  p('Directo', 'live'),
-  p('Trend', 'viral'),
-  p('Fiesta en casa', 'los vecinos'),
-]
-
 export const PACKS = [
   {
     id: 'mix',
@@ -155,7 +137,7 @@ export const PACKS = [
     g2: '#b06bff',
     words: [
       ...comida, ...ciudad, ...animales, ...casa,
-      ...fiesta, ...profesiones, ...viajes, ...cosasDeGroupi,
+      ...fiesta, ...profesiones, ...viajes,
     ],
   },
   { id: 'comida', name: 'Comida', g1: '#ff9f43', g2: '#ff5f6d', words: comida },
@@ -165,7 +147,6 @@ export const PACKS = [
   { id: 'fiesta', name: 'De fiesta', g1: '#ffd60a', g2: '#ff9f43', words: fiesta },
   { id: 'profesiones', name: 'Profesiones', g1: '#64d2ff', g2: '#0a84ff', words: profesiones },
   { id: 'viajes', name: 'Viajes', g1: '#ff6482', g2: '#ff9f43', words: viajes },
-  { id: 'cuadrilla', name: 'Vida de ziztubizian', g1: '#b06bff', g2: '#64d2ff', words: cosasDeGroupi },
 ]
 
 // Acepta strings o { w, h } / { word, hint } y devuelve { w, h|null }
