@@ -162,7 +162,7 @@ export default function Setup({
         {players.length === 0 && (
           <p className="empty">Mínimo 3 ziztuz. Se juega pasando un solo móvil.</p>
         )}
-        {defaultPlayers.some((n) => !players.includes(n)) && (
+        {!locked && defaultPlayers.some((n) => !players.includes(n)) && (
           <button
             className="linkish"
             onClick={() =>

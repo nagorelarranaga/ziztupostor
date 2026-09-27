@@ -85,32 +85,15 @@ export default function App() {
   )
 
   // En local: public/words.private.json (gitignored).
-  // En la web: caché en localStorage tras desbloquear con código una vez.
+  // En la web: el código NO se guarda - hay que meterlo en cada sesión.
   useEffect(() => {
+    // Limpieza de versiones que sí guardaban el desbloqueo
+    localStorage.removeItem('zz.privateData')
+    localStorage.removeItem('zz.code')
     fetch('words.private.json', { cache: 'no-store' })
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
-        if (d) return applyPrivateData(d)
-        try {
-          const cached = localStorage.getItem('zz.privateData')
-          if (cached) applyPrivateData(JSON.parse(cached))
-          // Si hay código guardado, refresca los datos en segundo plano
-          // (nuevas fotos/palabras aparecen solas tras un redeploy)
-          const code = localStorage.getItem('zz.code')
-          if (code) {
-            fetch(`/api/words?code=${encodeURIComponent(code)}`)
-              .then((r) => (r.ok ? r.json() : null))
-              .then((d) => {
-                if (d) {
-                  applyPrivateData(d)
-                  localStorage.setItem('zz.privateData', JSON.stringify(d))
-                }
-              })
-              .catch(() => {})
-          }
-        } catch {
-          /* caché corrupta */
-        }
+        if (d) applyPrivateData(d)
       })
       .catch(() => {})
   }, [applyPrivateData])
@@ -120,10 +103,7 @@ export default function App() {
     try {
       const r = await fetch(`/api/words?code=${encodeURIComponent(code)}`)
       if (!r.ok) return false
-      const d = await r.json()
-      applyPrivateData(d)
-      localStorage.setItem('zz.privateData', JSON.stringify(d))
-      localStorage.setItem('zz.code', code)
+      applyPrivateData(await r.json())
       return true
     } catch {
       return false
