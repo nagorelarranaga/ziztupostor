@@ -135,7 +135,10 @@ export default function App() {
             img: 'patterns/rayos.jpg',
             g1: '#4a4a4e',
             g2: '#1c1c1e',
-            words: base.flatMap((p) => p.words),
+            // Cada palabra recuerda su bloque de origen para la categoría
+            words: base.flatMap((p) =>
+              p.words.map((w) => ({ ...normItem(w), cat: p.name })),
+            ),
           },
         ]
       : []
@@ -150,6 +153,7 @@ export default function App() {
       ...r,
       hint: item.h,
       packName: pack.name,
+      packCat: item.cat || pack.name,
       packImg: pack.img || null,
       g1: pack.g1,
       g2: pack.g2,

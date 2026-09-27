@@ -74,7 +74,9 @@ export default function Reveal({ round, photos = {}, onDone }) {
               <div className="word-big">ERES ZIZTUPOSTOR</div>
               {round.impostorHint && (
                 <div className="hint-pill">
-                  {round.hint ? `Pista: ${round.hint}` : `Categoría: ${round.category}`}
+                  {round.hint
+                    ? `Pista: ${round.hint}`
+                    : `Categoría: ${round.packCat || round.category}`}
                 </div>
               )}
               <p className="peek-sub">Disimula. Nadie puede saber que eres tú.</p>

@@ -171,5 +171,7 @@ export const PACKS = [
 // Acepta strings o { w, h } / { word, hint } y devuelve { w, h|null }
 export function normItem(item) {
   if (typeof item === 'string') return { w: item, h: null }
-  return { w: item.w ?? item.word, h: item.h ?? item.hint ?? null }
+  const it = { w: item.w ?? item.word, h: item.h ?? item.hint ?? null }
+  if (item.cat) it.cat = item.cat
+  return it
 }
