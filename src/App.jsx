@@ -236,14 +236,7 @@ export default function App() {
       {screen === 'scores' && (
         <Scores
           key="scores"
-          // Sin código no se muestran los nombres de la cuadrilla
-          scores={
-            locked
-              ? Object.fromEntries(
-                  Object.entries(scores).filter(([n]) => !defaultPlayers.includes(n)),
-                )
-              : scores
-          }
+          scores={scores}
           setScores={setScores}
           onBack={() => setScreen('setup')}
         />
