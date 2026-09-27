@@ -23,6 +23,11 @@ const PATTERNS = [
   { label: 'Cebra', src: 'patterns/cebra.jpg' },
   { label: 'Hojas', src: 'patterns/hojas.jpg' },
   { label: 'Estrellas beige', src: 'patterns/estrellas.png' },
+  { label: 'Abanicos', src: 'patterns/abanicos.jpg' },
+  { label: 'Ondas burdeos', src: 'patterns/ondas.jpg' },
+  { label: 'Leopardo gris', src: 'patterns/leopardo-gris.jpg' },
+  { label: 'Agua', src: 'patterns/agua.jpg' },
+  { label: 'Topos', src: 'patterns/topos.jpg' },
 ]
 
 export default function PackEditor({ packs, setPacks, otherPacks = [], onBack }) {
