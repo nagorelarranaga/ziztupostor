@@ -49,7 +49,16 @@ export default function Reveal({ round, photos = {}, onDone }) {
     <div className="screen center">
       <div
         className={`peek ${show ? 'show' : ''} ${impostor && show ? 'imp' : ''}`}
-        style={show && !impostor && round.g1 ? { borderColor: round.g1 } : undefined}
+        style={
+          show && !impostor
+            ? {
+                borderColor: 'transparent',
+                background: round.packImg
+                  ? `linear-gradient(160deg, ${round.g1}99, ${round.g2}99), linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.55)), url('${round.packImg}') center/cover`
+                  : `linear-gradient(140deg, ${round.g1 || '#8a8a8e'}, ${round.g2 || '#3a3a3c'})`,
+              }
+            : undefined
+        }
         onPointerDown={() => reveal(true)}
         onPointerUp={() => reveal(false)}
         onPointerLeave={() => reveal(false)}
@@ -72,6 +81,7 @@ export default function Reveal({ round, photos = {}, onDone }) {
             <div className="peek-in">
               <div className="peek-kicker">tu palabra es</div>
               <div className="word-big">{round.word}</div>
+              <div className="pack-tag">{round.packName}</div>
               <p className="peek-sub">Da pistas sin decirla. La ziztupostorra no la conoce.</p>
             </div>
           )
