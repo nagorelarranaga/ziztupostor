@@ -4,7 +4,7 @@ El juego del impostor hecho para ziztubizian. Una sola persona recibe
 "ZIZTUPOSTORRA" mientras las demás ven una palabra secreta. Ronda de pistas,
 debate, votación secreta y drama.
 
-Se juega pasando un solo móvil. Mobile-first, estilo iOS.
+Se juega pasando un solo móvil.
 
 ## Jugar en local
 
