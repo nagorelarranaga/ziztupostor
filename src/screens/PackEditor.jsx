@@ -23,6 +23,13 @@ const PATTERNS = [
   { label: 'Rayas ciruela', src: 'patterns/rayas.jpg', g1: '#7a5568', g2: '#4a3345' },
   { label: 'Damero verde', src: 'patterns/damero.jpg', g1: '#4e6e52', g2: '#2c4630' },
   { label: 'Guindillas', src: 'patterns/guindillas.png', g1: '#e86a92', g2: '#c93737' },
+  { label: 'Comida', src: 'patterns/comida.jpg', g1: '#e8dcc8', g2: '#2f5d66' },
+  { label: 'Sitios', src: 'patterns/sitios.jpg', g1: '#f2c0cc', g2: '#5d93b8' },
+  { label: 'Animales', src: 'patterns/animales.jpg', g1: '#d6cba8', g2: '#4e6e48' },
+  { label: 'Casa', src: 'patterns/casa.jpg', g1: '#f0b4c2', g2: '#6e8fa3' },
+  { label: 'Fiesta', src: 'patterns/fiesta.jpg', g1: '#e2e2e7', g2: '#43434c' },
+  { label: 'Profesiones', src: 'patterns/profesiones.jpg', g1: '#d9cdf0', g2: '#7a5fa8' },
+  { label: 'Viajes', src: 'patterns/viajes.png', g1: '#f7cfe0', g2: '#4a7fae' },
 ]
 
 export default function PackEditor({ packs, setPacks, otherPacks = [], onBack }) {
