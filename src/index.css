@@ -585,17 +585,79 @@ body {
   color: #fff;
 }
 
-.lockcard {
-  margin-top: 8px;
+/* ---------- bloqueo por código ---------- */
+
+.lockcard-hero {
+  background: linear-gradient(150deg, #2c2c2e, #161617);
+  color: #fff;
+  margin-top: 12px;
 }
 
-.lockcard .btn {
-  margin-top: 10px;
+.lock-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.lockcard .error {
-  color: var(--terra);
-  margin-top: 6px;
+.lock-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.lock-sub {
+  margin-top: 3px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.info-dot {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lock-note {
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.75);
+  animation: fadeIn 0.25s ease;
+}
+
+.lock-note.error {
+  color: #ffb4a8;
+}
+
+.lockcard-hero .field {
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: transparent;
+}
+
+.lockcard-hero .field::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.lockcard-hero .btn {
+  margin-top: 12px;
+}
+
+.lockcard-hero .btn-primary {
+  background: #fff;
+  color: #161617;
 }
 
 /* ---------- CTA ---------- */

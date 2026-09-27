@@ -31,6 +31,7 @@ export default function Setup({
   const [busy, setBusy] = useState(false)
   const [codeError, setCodeError] = useState(false)
   const [groupImgErr, setGroupImgErr] = useState(false)
+  const [showInfo, setShowInfo] = useState(false)
 
   async function tryUnlock() {
     if (!code.trim() || busy) return
@@ -71,6 +72,61 @@ export default function Setup({
           />
           <img className="bolt bolt-tr" src="rayo.png" alt="" />
           <img className="bolt bolt-bl" src="rayo.png" alt="" />
+        </div>
+      )}
+
+      {locked && (
+        <div className="card lockcard-hero">
+          <div className="lock-top">
+            <div>
+              <div className="lock-title">Bloques privados 🔒</div>
+              <div className="lock-sub">Pídele a @nagorelarranaga el código</div>
+            </div>
+            <button
+              className="info-dot"
+              onClick={() => setShowInfo(!showInfo)}
+              aria-label="Por qué está protegido"
+            >
+              i
+            </button>
+          </div>
+          {showInfo && (
+            <p className="lock-note">
+              Está protegido porque hay cosas funables que no se pueden publicar.
+              Cosa de las ziztuz 🤫
+            </p>
+          )}
+          {showLock ? (
+            <>
+              <input
+                className="field"
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && tryUnlock()}
+                placeholder="Código"
+                autoComplete="off"
+                autoCapitalize="none"
+                enterKeyHint="go"
+              />
+              {codeError && (
+                <div className="lock-note error">Código incorrecto, pregunta a la de siempre</div>
+              )}
+              <button
+                className="btn btn-primary btn-block"
+                onClick={tryUnlock}
+                disabled={busy || !code.trim()}
+              >
+                {busy ? 'Comprobando…' : 'Desbloquear'}
+              </button>
+            </>
+          ) : (
+            <button
+              className="btn btn-accent btn-block lock-btn"
+              onClick={() => setShowLock(true)}
+            >
+              Tengo código →
+            </button>
+          )}
         </div>
       )}
 
@@ -132,34 +188,6 @@ export default function Setup({
       <button className="linkish" onClick={onEditor}>
         Crear un nuevo bloque privado →
       </button>
-
-      {locked &&
-        (showLock ? (
-          <div className="card lockcard">
-            <input
-              className="field"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && tryUnlock()}
-              placeholder="Código de la cuadrilla"
-              autoComplete="off"
-              autoCapitalize="none"
-              enterKeyHint="go"
-            />
-            {codeError && <div className="row-sub error">Código incorrecto, pregunta a la de siempre</div>}
-            <button
-              className="btn btn-primary btn-block"
-              onClick={tryUnlock}
-              disabled={busy || !code.trim()}
-            >
-              {busy ? 'Comprobando…' : 'Desbloquear bloques'}
-            </button>
-          </div>
-        ) : (
-          <button className="linkish" onClick={() => setShowLock(true)}>
-            Tengo código →
-          </button>
-        ))}
 
       <div className="label">Partida</div>
       <div className="card row-between">
