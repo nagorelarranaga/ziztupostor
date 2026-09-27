@@ -32,10 +32,14 @@ export default function App() {
     (d) => {
       if (!d) return
       const raw = Array.isArray(d) ? d : d.packs || [d]
+      const titleCase = (s) =>
+        typeof s === 'string' && s.length
+          ? s[0].toUpperCase() + s.slice(1).toLowerCase()
+          : s
       const list = raw
         .map((pk) => ({
           id: pk.id || `priv-${pk.name}`,
-          name: pk.name || 'Privado',
+          name: titleCase(pk.name) || 'Privado',
           img: pk.img || null,
           g1: pk.g1 || DEFAULT_GRADIENT[0],
           g2: pk.g2 || DEFAULT_GRADIENT[1],
@@ -133,7 +137,7 @@ export default function App() {
       ? [
           {
             id: 'todo-mezclado',
-            name: 'TODO MEZCLADO',
+            name: 'Todo mezclado',
             img: 'patterns/rayos.jpg',
             g1: '#4a4a4e',
             g2: '#1c1c1e',
