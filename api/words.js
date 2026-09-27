@@ -18,6 +18,10 @@ const WINDOW_MS = 10 * 60 * 1000
 const MAX_FAILS = 8
 
 export default function handler(req, res) {
+  if (req.method !== 'GET') {
+    res.status(405).json({ error: 'método no permitido' })
+    return
+  }
   const expected = process.env.ZIZTU_CODE
   const data = process.env.ZIZTU_WORDS
   if (!expected || !data) {
@@ -35,7 +39,7 @@ export default function handler(req, res) {
     res.status(429).json({ error: 'demasiados intentos, espera un rato' })
     return
   }
-  const code = String(req.query.code || '').trim()
+  const code = String(req.query.code || '').slice(0, 128).trim()
   if (code !== expected) {
     rec.n++
     attempts.set(ip, rec)
