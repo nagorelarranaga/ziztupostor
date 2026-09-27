@@ -46,7 +46,7 @@ export default function App() {
       if (list.length) setPrivatePacks(list)
 
       // Ziztuz predeterminadas (opcional, privado): solo se aplican una vez
-      // y solo si la lista está vacía — luego se pueden quitar/añadir a mano.
+      // y solo si la lista está vacía - luego se pueden quitar/añadir a mano.
       // Cada entrada puede ser "Nombre" o {name, img} (foto de perfil).
       const rawPlayers = Array.isArray(d.players) ? d.players : []
       const names = rawPlayers

@@ -24,7 +24,7 @@ const data = JSON.parse(readFileSync(privateJson, 'utf8'))
 
 const lines = [
   '# Pega estas variables en Vercel → Settings → Environment Variables.',
-  '# Este archivo está en public/private/ (gitignored) — no se sube.',
+  '# Este archivo está en public/private/ (gitignored) - no se sube.',
   '',
   'ZIZTU_CODE=pon-aqui-vuestro-codigo',
   '',
@@ -71,7 +71,7 @@ if (data.groupImg) {
       if (dataUrl.length <= 60000) break
     }
     if (dataUrl.length > 60000) {
-      console.warn(`! Foto de grupo: ${dataUrl.length} caracteres, sigue sin caber — recórtala`)
+      console.warn(`! Foto de grupo: ${dataUrl.length} caracteres, sigue sin caber - recórtala`)
     } else {
       lines.push(`ZIZTU_GROUP_IMG=${dataUrl}`)
       console.log(`Grupo: ${data.groupImg} → ${Math.round(dataUrl.length / 1024)} KB`)

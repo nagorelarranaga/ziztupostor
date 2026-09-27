@@ -39,7 +39,7 @@ export default function PackEditor({ packs, setPacks, otherPacks = [], onBack })
   const valid = name.trim().length > 0 && words.length >= 3
 
   // Estampados ya usados por otros bloques (privados, genéricos o de la app)
-  // — no se ofrecen al crear/editar. El del bloque en edición sí queda visible.
+  // - no se ofrecen al crear/editar. El del bloque en edición sí queda visible.
   const usedImgs = new Set()
   ;[...packs, ...otherPacks].forEach((p) => {
     if (editing && p.id === editing) return

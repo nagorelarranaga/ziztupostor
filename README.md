@@ -1,10 +1,10 @@
 # ⚡ ZIZTUPOSTOR
 
 El juego del impostor hecho a medida para mi cuadrilla 💛 Una persona recibe
-"ZIZTUPOSTORRA" mientras las demás ven una palabra secreta. Ronda de pistas,
+"ZIZTUPOSTOR" mientras las demás ven una palabra secreta. Ronda de pistas,
 debate, votación secreta y drama. Mucho drama. 🎭
 
-Se juega pasando un solo móvil 📱 — nada de apps ni registros.
+Se juega pasando un solo móvil 📱 - nada de apps ni registros.
 
 ## 🚀 Jugar en local
 
@@ -23,13 +23,13 @@ con `npm run dev -- --host`).
 3. **Revelación** 🤫: pasa el móvil una a una. Cada ziztu **mantiene pulsado**
    para ver su papel en secreto y suelta para ocultarlo.
 4. **Debate** 🗣️: ronda de pistas por turnos, con temporizador opcional.
-5. **Votación** 🗳️: cada una vota en secreto quién cree que es la ziztupostorra.
-6. **Resultado** ⚡: se revela la palabra, la(s) ziztupostorra(s) y el marcador.
+5. **Votación** 🗳️: cada una vota en secreto quién cree que es la ziztupostor.
+6. **Resultado** ⚡: se revela la palabra, la(s) ziztupostor(s) y el marcador.
 
 ## 🏆 Puntuación
 
-- Ziztubizian caza a la ziztupostorra → +1 a cada inocente.
-- La ziztupostorra escapa → +2 a cada ziztupostorra.
+- Las ziztuz cazan a la ziztupostor → +1 a cada inocente.
+- La ziztupostor escapa → +2 a cada ziztupostor.
 - El marcador se guarda en el móvil entre partidas.
 
 ## 🔒 Palabras privadas (IMPORTANTE)
@@ -91,7 +91,7 @@ tienen dos vías, ninguna llega al repositorio:
 La web pública no incluye las palabras privadas: se sirven desde la función
 `api/words.js` solo si el código es correcto. Para desplegar:
 
-1. Sube el repo a GitHub (puede ser público — no hay datos privados ✅).
+1. Sube el repo a GitHub (puede ser público - no hay datos privados ✅).
 2. En Vercel: **Import project** → elige el repo → Deploy (detecta Vite solo).
 3. Genera las variables ejecutando `npm run photoenv`. Escribe
    `public/private/vercel-env.txt` (ignorado por git) con todo listo.
@@ -103,7 +103,7 @@ La web pública no incluye las palabras privadas: se sirven desde la función
    - `ZIZTU_GROUP_IMG` → la foto de grupo de la pantalla inicial
 5. Redeploy. Listo: al abrir la web, el botón **"Tengo código →"** desbloquea
    los bloques privados, las fotos de perfil y la foto de grupo. Se guarda
-   en cada móvil — solo se pide una vez. 🎉
+   en cada móvil - solo se pide una vez. 🎉
 
 Si una jugadora no tiene `ZIZTU_IMG_`, se muestra su inicial; sin
 `ZIZTU_GROUP_IMG` no sale la foto de grupo. Los estampados
@@ -118,7 +118,7 @@ pantalla encendida durante la partida. ⚡
 ## 📦 Publicar (estático, sin código)
 
 ```bash
-npm run build   # genera dist/ — súbelo a Netlify/GitHub Pages
+npm run build   # genera dist/ - súbelo a Netlify/GitHub Pages
 ```
 
 Sin función serverless no hay desbloqueo por código: solo los bloques

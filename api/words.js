@@ -1,7 +1,7 @@
 // Función serverless (Vercel). Devuelve los bloques privados solo si el
 // código coincide con la variable de entorno ZIZTU_CODE.
-// Las palabras viven en ZIZTU_WORDS (JSON) — nunca en el bundle público.
-// Las fotos de perfil viven en ZIZTU_IMG_<NOMBRE> (data URL) — se inyectan
+// Las palabras viven en ZIZTU_WORDS (JSON) - nunca en el bundle público.
+// Las fotos de perfil viven en ZIZTU_IMG_<NOMBRE> (data URL) - se inyectan
 // en cada jugadora si la variable existe; si no, se usa su img local o la
 // inicial.
 const slug = (s) =>
