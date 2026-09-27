@@ -14,6 +14,7 @@ export default function Setup({
   setPlayers,
   packs,
   photos = {},
+  groupImg = null,
   locked = false,
   onUnlock,
   onStart,
@@ -29,6 +30,7 @@ export default function Setup({
   const [code, setCode] = useState('')
   const [busy, setBusy] = useState(false)
   const [codeError, setCodeError] = useState(false)
+  const [groupImgErr, setGroupImgErr] = useState(false)
 
   async function tryUnlock() {
     if (!code.trim() || busy) return
@@ -58,6 +60,15 @@ export default function Setup({
           ZIZTU<span>POSTOR</span>
         </h1>
       </header>
+
+      {groupImg && !groupImgErr && (
+        <img
+          className="group-photo"
+          src={groupImg}
+          alt="ziztubizian"
+          onError={() => setGroupImgErr(true)}
+        />
+      )}
 
       <div className="label">Ziztuz · {players.length}</div>
       <div className="card plist">

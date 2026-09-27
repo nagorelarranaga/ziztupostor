@@ -32,6 +32,17 @@ const lines = [
 lines.push(`ZIZTU_WORDS=${JSON.stringify(data)}`)
 lines.push('')
 
+async function toDataUrl(file, size, quality, square = true) {
+  const buf = await sharp(file)
+    .resize(size, square ? size : null, {
+      fit: 'cover',
+      withoutEnlargement: true,
+    })
+    .webp({ quality })
+    .toBuffer()
+  return `data:image/webp;base64,${buf.toString('base64')}`
+}
+
 for (const p of data.players || []) {
   const name = typeof p === 'object' ? p.name : p
   const img = typeof p === 'object' ? p.img : null
@@ -41,16 +52,31 @@ for (const p of data.players || []) {
     console.warn(`! ${name}: no existe ${file}, se omite`)
     continue
   }
-  const buf = await sharp(file)
-    .resize(256, 256, { fit: 'cover' })
-    .webp({ quality: 75 })
-    .toBuffer()
-  const dataUrl = `data:image/webp;base64,${buf.toString('base64')}`
+  const dataUrl = await toDataUrl(file, 256, 75)
   if (dataUrl.length > 64000) {
     console.warn(`! ${name}: la foto queda en ${dataUrl.length} caracteres, cerca del límite`)
   }
   lines.push(`ZIZTU_IMG_${slug(name)}=${dataUrl}`)
   console.log(`${name}: ${img} → ${Math.round(dataUrl.length / 1024)} KB`)
+}
+
+// Foto de grupo de la pantalla inicial (data.groupImg). Baja tamaño y
+// calidad hasta caber en el límite de ~64KB por variable de entorno.
+if (data.groupImg) {
+  const file = join('public', data.groupImg)
+  if (existsSync(file)) {
+    let dataUrl = null
+    for (const [size, q] of [[720, 62], [640, 58], [560, 55], [480, 52], [400, 50]]) {
+      dataUrl = await toDataUrl(file, size, q, false)
+      if (dataUrl.length <= 60000) break
+    }
+    if (dataUrl.length > 60000) {
+      console.warn(`! Foto de grupo: ${dataUrl.length} caracteres, sigue sin caber — recórtala`)
+    } else {
+      lines.push(`ZIZTU_GROUP_IMG=${dataUrl}`)
+      console.log(`Grupo: ${data.groupImg} → ${Math.round(dataUrl.length / 1024)} KB`)
+    }
+  }
 }
 
 const out = join('public', 'private', 'vercel-env.txt')

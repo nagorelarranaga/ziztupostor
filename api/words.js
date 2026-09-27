@@ -23,6 +23,7 @@ export default function handler(req, res) {
     return
   }
   const parsed = JSON.parse(data)
+  if (process.env.ZIZTU_GROUP_IMG) parsed.groupImg = process.env.ZIZTU_GROUP_IMG
   if (Array.isArray(parsed.players)) {
     parsed.players = parsed.players.map((p) => {
       const name = typeof p === 'object' ? p?.name : p

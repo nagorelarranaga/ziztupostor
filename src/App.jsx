@@ -21,6 +21,7 @@ export default function App() {
   const [, setDefaultsApplied] = useLocalStorage('zz.defaultsApplied', false)
   const [privatePacks, setPrivatePacks] = useState(null)
   const [playerPhotos, setPlayerPhotos] = useState({})
+  const [groupImg, setGroupImg] = useState(null)
   const [round, setRound] = useState(null)
   useWakeLock()
 
@@ -59,6 +60,7 @@ export default function App() {
         }
       })
       setPlayerPhotos(photos)
+      if (d.groupImg) setGroupImg(d.groupImg)
       const stored = (k, fb) => {
         try {
           return JSON.parse(localStorage.getItem(k)) ?? fb
@@ -146,6 +148,7 @@ export default function App() {
           setPlayers={setPlayers}
           packs={packs}
           photos={playerPhotos}
+          groupImg={groupImg}
           locked={!privatePacks?.length}
           onUnlock={unlock}
           onStart={startRound}
