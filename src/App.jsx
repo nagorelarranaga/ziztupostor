@@ -176,7 +176,16 @@ export default function App() {
   }
 
   return (
-    <div className="app">
+    <div
+      className="app"
+      style={
+        round
+          ? {
+              background: `linear-gradient(170deg, ${round.g1}38, ${round.g2}2b), #f1ede7`,
+            }
+          : undefined
+      }
+    >
       {screen === 'setup' && (
         <Setup
           key="setup"
