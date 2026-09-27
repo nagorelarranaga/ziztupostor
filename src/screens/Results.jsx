@@ -29,7 +29,7 @@ export default function Results({ round, scores, onRematch, onSetup }) {
 
       <div className="card">
         <div className="row-sub">
-          {round.impostors.length === 1 ? 'la ziztupostorra era' : 'las ziztupostorras eran'}
+          {round.impostors.length === 1 ? 'la ziztupostorra era' : 'las ziztupostors eran'}
         </div>
         <div className="imps">
           {impostorNames.map((n) => (

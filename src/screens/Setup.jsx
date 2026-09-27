@@ -164,23 +164,23 @@ export default function Setup({
       <div className="label">Partida</div>
       <div className="card row-between">
         <div>
-          <div className="row-title">Ziztupostorras</div>
+          <div className="row-title">Ziztupostors</div>
           <div className="row-sub">
-            {imp} {imp === 1 ? 'ziztupostorra' : 'ziztupostorras'} ·{' '}
+            {imp} {imp === 1 ? 'ziztupostorra' : 'ziztupostors'} ·{' '}
             {Math.max(0, players.length - imp)} inocentes
           </div>
         </div>
         <div className="stepper">
           <button
             onClick={() => setImpostors(Math.max(1, imp - 1))}
-            aria-label="Menos ziztupostorras"
+            aria-label="Menos ziztupostors"
           >
             −
           </button>
           <b>{imp}</b>
           <button
             onClick={() => setImpostors(Math.min(maxImpostors, imp + 1))}
-            aria-label="Más ziztupostorras"
+            aria-label="Más ziztupostors"
           >
             +
           </button>
@@ -189,7 +189,7 @@ export default function Setup({
 
       <div className="card row-between">
         <div>
-          <div className="row-title">Pista para la ziztupostorra</div>
+          <div className="row-title">Pista para ziztupostor</div>
           <div className="row-sub">Recibe una pista de la palabra (o la categoría)</div>
         </div>
         <button

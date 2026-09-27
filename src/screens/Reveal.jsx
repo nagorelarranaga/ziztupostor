@@ -71,7 +71,7 @@ export default function Reveal({ round, photos = {}, onDone }) {
           impostor ? (
             <div className="peek-in">
               <img className="bolt bolt-imp" src="rayo.png" alt="" />
-              <div className="word-big">ERES LA ZIZTUPOSTORRA</div>
+              <div className="word-big">ERES ZIZTUPOSTOR</div>
               {round.impostorHint && (
                 <div className="hint-pill">
                   {round.hint ? `Pista: ${round.hint}` : `Categoría: ${round.category}`}

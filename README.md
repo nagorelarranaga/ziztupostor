@@ -60,7 +60,7 @@ tienen dos vías, ninguna llega al repositorio:
       "g1": "#c8a684",
       "g2": "#8a6f55",
       "words": [
-        { "w": "Palabra uno", "h": "pista para la ziztupostorra" },
+        { "w": "Palabra uno", "h": "pista para ziztupostor" },
         { "w": "Palabra sin pista", "h": null },
         "También vale texto plano"
       ]
