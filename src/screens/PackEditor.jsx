@@ -1,17 +1,7 @@
 import { useRef, useState } from 'react'
 
-// Colores distintos de los que ya usan los bloques privados
-// (nude, morado claro, blanco roto, marrón oscuro y azul)
-const GRADIENTS = [
-  ['#9a9a9c', '#5c5c5e'],
-  ['#4a4a4c', '#1c1c1e'],
-  ['#b5bfae', '#77846f'],
-  ['#e3c5c0', '#b08079'],
-  ['#8c5a5a', '#4e2e33'],
-  ['#cbb98a', '#8a7a52'],
-  ['#7f8ea3', '#46536b'],
-  ['#a89ec9', '#6f6394'],
-]
+// Degradado neutro por defecto (bloques sin estampado / tinte sobre imagen)
+const DEFAULT_GRADIENT = ['#9a9a9c', '#5c5c5e']
 
 const PATTERNS = [
   { label: 'Leopardo', src: 'patterns/ziztubizian.jpg' },
@@ -39,7 +29,7 @@ export default function PackEditor({ packs, setPacks, otherPacks = [], onBack })
   const [name, setName] = useState('')
   const [entries, setEntries] = useState([])
   const [img, setImg] = useState(null)
-  const [grad, setGrad] = useState(GRADIENTS[0])
+  const [grad, setGrad] = useState(DEFAULT_GRADIENT)
   const [w, setW] = useState('')
   const [h, setH] = useState('')
   const wRef = useRef(null)
@@ -47,15 +37,14 @@ export default function PackEditor({ packs, setPacks, otherPacks = [], onBack })
   const words = entries.map((e) => e.w.trim()).filter(Boolean)
   const valid = name.trim().length > 0 && words.length >= 3
 
-  // Estampados ya usados por otros bloques (privados, genéricos o privados de la app)
+  // Estampados ya usados por otros bloques (privados, genéricos o de la app)
   // — no se ofrecen al crear/editar. El del bloque en edición sí queda visible.
-  const used = new Set()
+  const usedImgs = new Set()
   ;[...packs, ...otherPacks].forEach((p) => {
     if (editing && p.id === editing) return
-    used.add(p.img || `${p.g1}|${p.g2}`)
+    if (p.img) usedImgs.add(p.img)
   })
-  const patternsAvail = PATTERNS.filter((pt) => !used.has(pt.src))
-  const gradsAvail = GRADIENTS.filter((g) => !used.has(`${g[0]}|${g[1]}`))
+  const patternsAvail = PATTERNS.filter((pt) => !usedImgs.has(pt.src))
   const customImg = img && img.startsWith('data:') ? img : null
 
   function load(p) {
@@ -67,7 +56,7 @@ export default function PackEditor({ packs, setPacks, otherPacks = [], onBack })
       ),
     )
     setImg(p.img || null)
-    setGrad([p.g1, p.g2])
+    setGrad([p.g1 || DEFAULT_GRADIENT[0], p.g2 || DEFAULT_GRADIENT[1]])
     setW('')
     setH('')
   }
@@ -77,7 +66,7 @@ export default function PackEditor({ packs, setPacks, otherPacks = [], onBack })
     setName('')
     setEntries([])
     setImg(null)
-    setGrad(GRADIENTS[0])
+    setGrad(DEFAULT_GRADIENT)
     setW('')
     setH('')
   }
@@ -244,18 +233,6 @@ export default function PackEditor({ packs, setPacks, otherPacks = [], onBack })
               aria-label="Tu foto"
             />
           )}
-          {gradsAvail.map((g) => (
-            <button
-              key={g[0]}
-              className={`swatch ${!img && grad[0] === g[0] ? 'on' : ''}`}
-              style={{ background: `linear-gradient(140deg, ${g[0]}, ${g[1]})` }}
-              onClick={() => {
-                setImg(null)
-                setGrad(g)
-              }}
-              aria-label="Degradado"
-            />
-          ))}
           <label className="swatch upload" title="Subir foto">
             +
             <input type="file" accept="image/*" hidden onChange={pickFile} />
