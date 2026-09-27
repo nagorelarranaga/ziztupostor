@@ -50,12 +50,14 @@ export default function Reveal({ round, photos = {}, onDone }) {
       <div
         className={`peek ${show ? 'show' : ''} ${impostor && show ? 'imp' : ''}`}
         style={
-          show && !impostor
+          show
             ? {
                 borderColor: 'transparent',
                 background: round.packImg
-                  ? `linear-gradient(160deg, ${round.g1}99, ${round.g2}99), linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.55)), url('${round.packImg}') center/cover`
-                  : `linear-gradient(140deg, ${round.g1 || '#8a8a8e'}, ${round.g2 || '#3a3a3c'})`,
+                  ? `linear-gradient(160deg, ${round.g1}${impostor ? '44' : '99'}, ${round.g2}${impostor ? '44' : '99'}), linear-gradient(180deg, rgba(0,0,0,${impostor ? '.62' : '.3'}), rgba(0,0,0,${impostor ? '.8' : '.55'})), url('${round.packImg}') center/cover`
+                  : impostor
+                    ? 'linear-gradient(150deg, #8a6f55, #3a2f26)'
+                    : `linear-gradient(140deg, ${round.g1 || '#8a8a8e'}, ${round.g2 || '#3a3a3c'})`,
               }
             : undefined
         }
