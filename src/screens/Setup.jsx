@@ -198,10 +198,11 @@ export default function Setup({
             </span>
           </button>
         ))}
+        <button className="pack pack-add" onClick={onEditor} aria-label="Crear bloque privado">
+          <span className="pack-plus">+</span>
+          <span className="pack-count">Nuevo bloque</span>
+        </button>
       </div>
-      <button className="linkish" onClick={onEditor}>
-        Crear un nuevo bloque privado →
-      </button>
 
       <div className="label">Partida</div>
       <div className="card row-between">

@@ -487,6 +487,34 @@ body {
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 
+.pack-add {
+  background: rgba(28, 28, 30, 0.04);
+  border: 2px dashed rgba(28, 28, 30, 0.22);
+  box-shadow: none;
+  color: #1c1c1e;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.pack-add::after {
+  display: none;
+}
+
+.pack-plus {
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1;
+  opacity: 0.55;
+}
+
+.pack-add .pack-count {
+  color: #6e6e70;
+  text-shadow: none;
+  opacity: 1;
+  font-weight: 600;
+}
+
 /* ---------- opciones ---------- */
 
 .stepper {
