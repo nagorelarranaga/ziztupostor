@@ -137,6 +137,21 @@ export default function App() {
     return [...mixed, ...base, ...customPacks]
   }, [customPacks, privatePacks])
 
+  // Al quitar a alguien de la lista se borran también sus puntos
+  function updatePlayers(next) {
+    const prev = locked ? guestPlayers : players
+    const removed = prev.filter((n) => !next.includes(n))
+    if (removed.length) {
+      setScores((s) => {
+        const copy = { ...s }
+        removed.forEach((n) => delete copy[n])
+        return copy
+      })
+    }
+    if (locked) setGuestPlayers(next)
+    else setPlayers(next)
+  }
+
   function startRound(cfg) {
     const pack = packs.find((p) => p.id === cfg.packId) ?? packs[0]
     const item = normItem(pack.words[Math.floor(Math.random() * pack.words.length)])
@@ -186,7 +201,7 @@ export default function App() {
         <Setup
           key="setup"
           players={locked ? guestPlayers : players}
-          setPlayers={locked ? setGuestPlayers : setPlayers}
+          setPlayers={updatePlayers}
           defaultPlayers={defaultPlayers}
           packs={packs}
           photos={playerPhotos}
