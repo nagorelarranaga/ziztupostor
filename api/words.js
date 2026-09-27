@@ -25,9 +25,12 @@ export default function handler(req, res) {
   let parsed
   try {
     // Acepta JSON plano o base64 (este último no se corrompe al pegarlo)
-    const raw = data.trim().startsWith('{')
-      ? data
-      : Buffer.from(data.trim(), 'base64').toString('utf8')
+    // Acepta JSON plano o base64; si se pegó la línea entera con el
+    // prefijo "ZIZTU_WORDS=" también lo limpia.
+    const clean = data.trim().replace(/^ZIZTU_WORDS=/, '').trim()
+    const raw = clean.startsWith('{')
+      ? clean
+      : Buffer.from(clean, 'base64').toString('utf8')
     parsed = JSON.parse(raw)
   } catch {
     res.status(500).json({ error: 'ZIZTU_WORDS no es un JSON válido' })
