@@ -948,6 +948,24 @@ body {
 
 /* ---------- votación ---------- */
 
+.vote-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1c1c1e;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 12px 22px;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(28, 28, 30, 0.25);
+}
+
+.vote-banner .bolt {
+  width: 22px;
+}
+
 .vote-q {
   font-size: 28px;
   font-weight: 800;

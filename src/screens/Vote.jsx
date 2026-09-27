@@ -21,15 +21,19 @@ export default function Vote({ round, photos = {}, onDone }) {
   if (stage === 'pass') {
     return (
       <div className="screen center">
+        <div className="vote-banner">
+          <img className="bolt" src="rayo.png" alt="" />
+          VOTACIÓN
+        </div>
         <div className="pass-kicker">
-          votación {i + 1} de {round.players.length} · pasa el móvil a
+          {i + 1} de {round.players.length} · pasa el móvil a
         </div>
         <div className="pass-name">
           <Avatar name={name} i={i} img={photos[name]} big />
           {name}
         </div>
         <p className="peek-sub">Vota en secreto. Sin soplar.</p>
-        <button className="btn btn-primary btn-block cta" onClick={() => setStage('choose')}>
+        <button className="btn btn-accent btn-block cta" onClick={() => setStage('choose')}>
           Soy {name}
         </button>
       </div>
