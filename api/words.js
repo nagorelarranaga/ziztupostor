@@ -36,11 +36,13 @@ export default function handler(req, res) {
     res.status(500).json({ error: 'ZIZTU_WORDS no es un JSON válido' })
     return
   }
-  if (process.env.ZIZTU_GROUP_IMG) parsed.groupImg = process.env.ZIZTU_GROUP_IMG
+  // Limpia el prefijo "ZIZTU_X=" por si se pegó la línea entera
+  const val = (v) => v && v.trim().replace(/^ZIZTU_[A-Z0-9_]+=/, '')
+  if (process.env.ZIZTU_GROUP_IMG) parsed.groupImg = val(process.env.ZIZTU_GROUP_IMG)
   if (Array.isArray(parsed.players)) {
     parsed.players = parsed.players.map((p) => {
       const name = typeof p === 'object' ? p?.name : p
-      const img = name && process.env[`ZIZTU_IMG_${slug(name)}`]
+      const img = name && val(process.env[`ZIZTU_IMG_${slug(name)}`])
       if (!img) return p
       return typeof p === 'object' ? { ...p, img } : { name: p, img }
     })

@@ -88,6 +88,20 @@ export default function App() {
         try {
           const cached = localStorage.getItem('zz.privateData')
           if (cached) applyPrivateData(JSON.parse(cached))
+          // Si hay código guardado, refresca los datos en segundo plano
+          // (nuevas fotos/palabras aparecen solas tras un redeploy)
+          const code = localStorage.getItem('zz.code')
+          if (code) {
+            fetch(`/api/words?code=${encodeURIComponent(code)}`)
+              .then((r) => (r.ok ? r.json() : null))
+              .then((d) => {
+                if (d) {
+                  applyPrivateData(d)
+                  localStorage.setItem('zz.privateData', JSON.stringify(d))
+                }
+              })
+              .catch(() => {})
+          }
         } catch {
           /* caché corrupta */
         }
@@ -103,6 +117,7 @@ export default function App() {
       const d = await r.json()
       applyPrivateData(d)
       localStorage.setItem('zz.privateData', JSON.stringify(d))
+      localStorage.setItem('zz.code', code)
       return true
     } catch {
       return false
