@@ -16,7 +16,8 @@ const DEFAULT_GRADIENT = ['#c8a684', '#8a6f55']
 export default function App() {
   const [screen, setScreen] = useState('setup')
   const [players, setPlayers] = useLocalStorage('zz.players', [])
-  const [scores, setScores] = useLocalStorage('zz.scores', {})
+  // El marcador es solo de la sesión: se reinicia al cerrar la web
+  const [scores, setScores] = useState({})
   const [customPacks, setCustomPacks] = useLocalStorage('zz.customPacks', [])
   const [defaultPlayers, setDefaultPlayers] = useLocalStorage('zz.defaultPlayers', [])
   const [, setDefaultsApplied] = useLocalStorage('zz.defaultsApplied', false)
@@ -92,6 +93,7 @@ export default function App() {
     // Limpieza de versiones que sí guardaban el desbloqueo
     localStorage.removeItem('zz.privateData')
     localStorage.removeItem('zz.code')
+    localStorage.removeItem('zz.scores')
     fetch('words.private.json', { cache: 'no-store' })
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
