@@ -21,6 +21,8 @@ export default function App() {
   const [defaultPlayers, setDefaultPlayers] = useLocalStorage('zz.defaultPlayers', [])
   const [, setDefaultsApplied] = useLocalStorage('zz.defaultsApplied', false)
   const [privatePacks, setPrivatePacks] = useState(null)
+  // Ziztuz de invitado: solo sesión, para no enseñar la lista guardada sin código
+  const [guestPlayers, setGuestPlayers] = useState([])
   const [playerPhotos, setPlayerPhotos] = useState({})
   const [groupImg, setGroupImg] = useState(null)
   const [round, setRound] = useState(null)
@@ -110,6 +112,8 @@ export default function App() {
     }
   }
 
+  const locked = !privatePacks?.length
+
   const packs = useMemo(() => {
     const base = privatePacks?.length ? privatePacks : PACKS
     // Con bloques privados se añade TODO MEZCLADO: todas las palabras juntas
@@ -179,13 +183,13 @@ export default function App() {
       {screen === 'setup' && (
         <Setup
           key="setup"
-          players={players}
-          setPlayers={setPlayers}
+          players={locked ? guestPlayers : players}
+          setPlayers={locked ? setGuestPlayers : setPlayers}
           defaultPlayers={defaultPlayers}
           packs={packs}
           photos={playerPhotos}
           groupImg={groupImg}
-          locked={!privatePacks?.length}
+          locked={locked}
           onUnlock={unlock}
           onStart={startRound}
           onEditor={() => setScreen('editor')}
