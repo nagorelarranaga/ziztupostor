@@ -1056,3 +1056,114 @@ body {
   padding: 13px 16px;
   font-size: 15px;
 }
+
+/* ---------- editor: palabras + estampado ---------- */
+
+.label-in {
+  margin-top: 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.entry-add {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 44px;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.entry-add .field {
+  margin-top: 0;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 1fr auto 28px;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--sep);
+}
+
+.entry:last-of-type {
+  border-bottom: 0;
+}
+
+.entry-w {
+  font-size: 15px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.entry-h {
+  font-size: 13px;
+  color: var(--ink-2);
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.swatch {
+  appearance: none;
+  border: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(120, 120, 128, 0.14);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s var(--spring);
+}
+
+.swatch:active {
+  transform: scale(0.93);
+}
+
+.swatch::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 17px;
+  border: 2.5px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.swatch.on::after {
+  border-color: #1c1c1e;
+}
+
+.swatch.upload {
+  border: 2px dashed rgba(120, 120, 128, 0.45);
+  background: transparent;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-tile {
+  margin-top: 16px;
+  border-radius: 18px;
+  padding: 14px;
+  min-height: 78px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+}
