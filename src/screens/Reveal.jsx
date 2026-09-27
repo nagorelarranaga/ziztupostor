@@ -86,7 +86,7 @@ export default function Reveal({ round, photos = {}, onDone }) {
               <div className="peek-kicker">tu palabra es</div>
               <div className="word-big">{round.word}</div>
               <div className="pack-tag">{round.packName}</div>
-              <p className="peek-sub">Da pistas sin decirla. La ziztupostorra no la conoce.</p>
+              <p className="peek-sub">Da pistas sin decirla. La ziztupostor no la conoce.</p>
             </div>
           )
         ) : (

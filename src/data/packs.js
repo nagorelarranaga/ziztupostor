@@ -1,4 +1,4 @@
-// Cada palabra lleva una pista: es lo que ve la ziztupostorra para disimular.
+// Cada palabra lleva una pista: es lo que ve el ziztupostor para disimular.
 // Las pistas deben orientar sin revelar la palabra exacta.
 const p = (w, h) => ({ w, h })
 

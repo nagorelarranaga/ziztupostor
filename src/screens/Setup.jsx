@@ -218,7 +218,7 @@ export default function Setup({
             onClick={() => setImpostors(Math.max(1, imp - 1))}
             aria-label="Menos ziztupostors"
           >
-            −
+            -
           </button>
           <b>{imp}</b>
           <button

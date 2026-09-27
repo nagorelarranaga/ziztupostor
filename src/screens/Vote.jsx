@@ -40,7 +40,7 @@ export default function Vote({ round, photos = {}, onDone }) {
     <div className="screen">
       <div className="label-top">voto de {name}</div>
       <img className="bolt bolt-q" src="rayo.png" alt="" />
-      <h2 className="vote-q">¿Quién es la ziztupostorra?</h2>
+      <h2 className="vote-q">¿Quién es ziztupostor?</h2>
       <div className="suspects">
         {round.players.map((p, j) =>
           j === i ? null : (

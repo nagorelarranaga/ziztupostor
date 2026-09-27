@@ -34,7 +34,7 @@ export default function Discuss({ round, onVote }) {
       <div className="label-top">ronda de pistas</div>
       <p className="rules">
         Por turnos, cada una dice <b>una palabra o pista</b> relacionada con la palabra secreta.
-        La ziztupostorra finge que la conoce.
+        La ziztupostor finge que la conoce.
       </p>
 
       <div className="turn-card card">
@@ -88,7 +88,7 @@ export default function Discuss({ round, onVote }) {
       )}
 
       <button className="btn btn-accent btn-block cta" onClick={onVote}>
-        {done ? '¡Tiempo! A votar' : 'Votar a la ziztupostorra'}
+        {done ? '¡Tiempo! A votar' : 'Votar a ziztupostor'}
       </button>
     </div>
   )
