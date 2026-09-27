@@ -132,7 +132,7 @@ export default function App() {
           {
             id: 'todo-mezclado',
             name: 'TODO MEZCLADO',
-            img: 'rayo.png',
+            img: 'patterns/rayos.jpg',
             g1: '#4a4a4e',
             g2: '#1c1c1e',
             words: base.flatMap((p) => p.words),
