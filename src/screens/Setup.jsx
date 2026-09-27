@@ -12,6 +12,7 @@ const TIMER_OPTIONS = [
 export default function Setup({
   players,
   setPlayers,
+  defaultPlayers = [],
   packs,
   photos = {},
   groupImg = null,
@@ -160,6 +161,19 @@ export default function Setup({
         </div>
         {players.length === 0 && (
           <p className="empty">Mínimo 3 ziztuz. Se juega pasando un solo móvil.</p>
+        )}
+        {defaultPlayers.some((n) => !players.includes(n)) && (
+          <button
+            className="linkish"
+            onClick={() =>
+              setPlayers([
+                ...players,
+                ...defaultPlayers.filter((n) => !players.includes(n)),
+              ])
+            }
+          >
+            Restaurar ziztuz de la cuadrilla ↺
+          </button>
         )}
       </div>
 

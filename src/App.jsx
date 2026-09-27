@@ -18,6 +18,7 @@ export default function App() {
   const [players, setPlayers] = useLocalStorage('zz.players', [])
   const [scores, setScores] = useLocalStorage('zz.scores', {})
   const [customPacks, setCustomPacks] = useLocalStorage('zz.customPacks', [])
+  const [defaultPlayers, setDefaultPlayers] = useLocalStorage('zz.defaultPlayers', [])
   const [, setDefaultsApplied] = useLocalStorage('zz.defaultsApplied', false)
   const [privatePacks, setPrivatePacks] = useState(null)
   const [playerPhotos, setPlayerPhotos] = useState({})
@@ -61,6 +62,7 @@ export default function App() {
       })
       setPlayerPhotos(photos)
       if (d.groupImg) setGroupImg(d.groupImg)
+      if (names.length) setDefaultPlayers(names)
       const stored = (k, fb) => {
         try {
           return JSON.parse(localStorage.getItem(k)) ?? fb
@@ -75,7 +77,7 @@ export default function App() {
         setDefaultsApplied(true)
       }
     },
-    [setPlayers, setDefaultsApplied],
+    [setPlayers, setDefaultsApplied, setDefaultPlayers],
   )
 
   // En local: public/words.private.json (gitignored).
@@ -195,6 +197,7 @@ export default function App() {
           key="setup"
           players={players}
           setPlayers={setPlayers}
+          defaultPlayers={defaultPlayers}
           packs={packs}
           photos={playerPhotos}
           groupImg={groupImg}
