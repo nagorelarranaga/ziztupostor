@@ -91,14 +91,19 @@ La web pública no incluye las palabras privadas: se sirven desde la función
 
 1. Sube el repo a GitHub (puede ser público — no hay datos privados).
 2. En Vercel: **Import project** → elige el repo → Deploy (detecta Vite solo).
-3. En **Settings → Environment Variables** crea:
+3. Genera las variables ejecutando `npm run photoenv`. Escribe
+   `public/private/vercel-env.txt` (ignorado por git) con todo listo.
+4. En **Settings → Environment Variables** crea, desde ese archivo:
    - `ZIZTU_CODE` → el código que queráis (ej. `ziztu2024`)
-   - `ZIZTU_WORDS` → pega **todo el contenido** de `public/words.private.json`
-4. Redeploy. Listo: al abrir la web, el botón **"Tengo código →"** desbloquea
-   los bloques privados. Se guarda en cada móvil, solo se pide una vez.
+   - `ZIZTU_WORDS` → el JSON completo de vuestras palabras
+   - `ZIZTU_IMG_<NOMBRE>` → una por cada foto de perfil (data URL ya
+     comprimida a avatar, generada por el script)
+5. Redeploy. Listo: al abrir la web, el botón **"Tengo código →"** desbloquea
+   los bloques privados **y las fotos de perfil**. Se guarda en cada móvil,
+   solo se pide una vez.
 
-Las fotos de perfil (`public/private/`) no se suben — en la web se muestran
-iniciales. Los estampados (`public/patterns/`) sí se ven.
+Si una jugadora no tiene `ZIZTU_IMG_`, se muestra su inicial. Los estampados
+(`public/patterns/`) sí se suben en el repo y se ven siempre.
 
 ## Tech
 
