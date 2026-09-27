@@ -181,6 +181,7 @@ export default function App() {
           key="editor"
           packs={customPacks}
           setPacks={setCustomPacks}
+          otherPacks={privatePacks?.length ? privatePacks : PACKS}
           onBack={() => setScreen('setup')}
         />
       )}

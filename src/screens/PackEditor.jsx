@@ -16,7 +16,7 @@ const PATTERNS = [
   { label: 'Mandalas', src: 'patterns/tanger.jpg' },
 ]
 
-export default function PackEditor({ packs, setPacks, onBack }) {
+export default function PackEditor({ packs, setPacks, otherPacks = [], onBack }) {
   const [editing, setEditing] = useState(null)
   const [name, setName] = useState('')
   const [entries, setEntries] = useState([])
@@ -28,6 +28,17 @@ export default function PackEditor({ packs, setPacks, onBack }) {
 
   const words = entries.map((e) => e.w.trim()).filter(Boolean)
   const valid = name.trim().length > 0 && words.length >= 3
+
+  // Estampados ya usados por otros bloques (privados, genéricos o privados de la app)
+  // — no se ofrecen al crear/editar. El del bloque en edición sí queda visible.
+  const used = new Set()
+  ;[...packs, ...otherPacks].forEach((p) => {
+    if (editing && p.id === editing) return
+    used.add(p.img || `${p.g1}|${p.g2}`)
+  })
+  const patternsAvail = PATTERNS.filter((pt) => !used.has(pt.src))
+  const gradsAvail = GRADIENTS.filter((g) => !used.has(`${g[0]}|${g[1]}`))
+  const customImg = img && img.startsWith('data:') ? img : null
 
   function load(p) {
     setEditing(p.id)
@@ -197,7 +208,7 @@ export default function PackEditor({ packs, setPacks, onBack }) {
 
         <div className="row-sub label-in">Estampado</div>
         <div className="swatches">
-          {PATTERNS.map((pt) => (
+          {patternsAvail.map((pt) => (
             <button
               key={pt.src}
               className={`swatch ${img === pt.src ? 'on' : ''}`}
@@ -207,7 +218,15 @@ export default function PackEditor({ packs, setPacks, onBack }) {
               title={pt.label}
             />
           ))}
-          {GRADIENTS.map((g) => (
+          {customImg && (
+            <button
+              className="swatch on"
+              style={{ backgroundImage: `url('${customImg}')` }}
+              onClick={() => setImg(customImg)}
+              aria-label="Tu foto"
+            />
+          )}
+          {gradsAvail.map((g) => (
             <button
               key={g[0]}
               className={`swatch ${!img && grad[0] === g[0] ? 'on' : ''}`}
