@@ -1,0 +1,22 @@
+{
+  "players": [
+    "Jugadora 1",
+    { "name": "Jugadora 2", "img": "private/jugadora2.jpg" },
+    "Jugadora 3"
+  ],
+  "packs": [
+    {
+      "id": "ejemplo",
+      "name": "NUESTRO MAZO",
+      "img": "patterns/ejemplo.jpg",
+      "g1": "#c8a684",
+      "g2": "#8a6f55",
+      "words": [
+        { "w": "Palabra uno", "h": "pista para la impostora" },
+        { "w": "Palabra dos", "h": "otra pista" },
+        { "w": "Palabra sin pista", "h": null },
+        "También vale texto plano"
+      ]
+    }
+  ]
+}

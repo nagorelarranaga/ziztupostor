@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --- ZIZTUPOSTOR: datos privados ---
+# Mazos de palabras privados de la cuadrilla (nunca se suben al repo)
+public/words.private.json
+# Imágenes/estampados privados de los mazos
+public/private/
+
+# Variables de entorno / futuros secretos (modo online)
+.env
+.env.*
+!.env.example
