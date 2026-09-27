@@ -116,7 +116,7 @@ export default function App() {
     const pack = packs.find((p) => p.id === cfg.packId) ?? packs[0]
     const item = normItem(pack.words[Math.floor(Math.random() * pack.words.length)])
     const r = createRound(cfg.players, cfg.impostors, item.w, pack.name, cfg.hint)
-    setRound({ ...r, hint: item.h, packName: pack.name, cfg })
+    setRound({ ...r, hint: item.h, packName: pack.name, g1: pack.g1, g2: pack.g2, cfg })
     setScreen('reveal')
   }
 

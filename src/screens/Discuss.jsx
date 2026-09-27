@@ -58,6 +58,7 @@ export default function Discuss({ round, onVote }) {
               cy="60"
               r={R}
               className="ring-fg"
+              style={!done && round.g2 ? { stroke: round.g2 } : undefined}
               strokeDasharray={C}
               strokeDashoffset={C * (1 - pct)}
             />

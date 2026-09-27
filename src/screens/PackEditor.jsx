@@ -3,25 +3,26 @@ import { useRef, useState } from 'react'
 // Degradado neutro por defecto (bloques sin estampado / tinte sobre imagen)
 const DEFAULT_GRADIENT = ['#9a9a9c', '#5c5c5e']
 
+// Cada estampado lleva su color (g1/g2): el bloque lo hereda como tinte
 const PATTERNS = [
-  { label: 'Leopardo', src: 'patterns/ziztubizian.jpg' },
-  { label: 'Disco', src: 'patterns/farri.png' },
-  { label: 'Margaritas', src: 'patterns/pertsonak.jpg' },
-  { label: 'Mandalas', src: 'patterns/tanger.jpg' },
-  { label: 'Cuadros', src: 'patterns/cuadros.jpg' },
-  { label: 'Estrellas granate', src: 'patterns/estrellas-granate.jpg' },
-  { label: 'Cebra', src: 'patterns/cebra.jpg' },
-  { label: 'Hojas', src: 'patterns/hojas.jpg' },
-  { label: 'Estrellas beige', src: 'patterns/estrellas.png' },
-  { label: 'Abanicos', src: 'patterns/abanicos.jpg' },
-  { label: 'Ondas burdeos', src: 'patterns/ondas.jpg' },
-  { label: 'Leopardo gris', src: 'patterns/leopardo-gris.jpg' },
-  { label: 'Agua', src: 'patterns/agua.jpg' },
-  { label: 'Topos', src: 'patterns/topos.jpg' },
-  { label: 'Flores burdeos', src: 'patterns/flores.jpg' },
-  { label: 'Rayas ciruela', src: 'patterns/rayas.jpg' },
-  { label: 'Damero verde', src: 'patterns/damero.jpg' },
-  { label: 'Guindillas', src: 'patterns/guindillas.png' },
+  { label: 'Leopardo', src: 'patterns/ziztubizian.jpg', g1: '#d9b896', g2: '#b08968' },
+  { label: 'Disco', src: 'patterns/farri.png', g1: '#d9bdf0', g2: '#b489d4' },
+  { label: 'Margaritas', src: 'patterns/pertsonak.jpg', g1: '#f5f1ea', g2: '#d9cfbf' },
+  { label: 'Mandalas', src: 'patterns/tanger.jpg', g1: '#6e9bd8', g2: '#3f66ab' },
+  { label: 'Cuadros', src: 'patterns/cuadros.jpg', g1: '#9a9a9c', g2: '#5c5c5e' },
+  { label: 'Estrellas granate', src: 'patterns/estrellas-granate.jpg', g1: '#7a3b45', g2: '#3d1420' },
+  { label: 'Cebra', src: 'patterns/cebra.jpg', g1: '#e8e4de', g2: '#b3aca0' },
+  { label: 'Hojas', src: 'patterns/hojas.jpg', g1: '#5b83b8', g2: '#33517e' },
+  { label: 'Estrellas beige', src: 'patterns/estrellas.png', g1: '#e8d5bd', g2: '#a9805c' },
+  { label: 'Abanicos', src: 'patterns/abanicos.jpg', g1: '#2e5f8a', g2: '#1d3f63' },
+  { label: 'Ondas burdeos', src: 'patterns/ondas.jpg', g1: '#8a4a5c', g2: '#542738' },
+  { label: 'Leopardo gris', src: 'patterns/leopardo-gris.jpg', g1: '#c9c9c9', g2: '#6e6e70' },
+  { label: 'Agua', src: 'patterns/agua.jpg', g1: '#d8dcd9', g2: '#9aa8a6' },
+  { label: 'Topos', src: 'patterns/topos.jpg', g1: '#efe8d8', g2: '#3a3a3c' },
+  { label: 'Flores burdeos', src: 'patterns/flores.jpg', g1: '#a85d70', g2: '#6e3346' },
+  { label: 'Rayas ciruela', src: 'patterns/rayas.jpg', g1: '#7a5568', g2: '#4a3345' },
+  { label: 'Damero verde', src: 'patterns/damero.jpg', g1: '#4e6e52', g2: '#2c4630' },
+  { label: 'Guindillas', src: 'patterns/guindillas.png', g1: '#e86a92', g2: '#c93737' },
 ]
 
 export default function PackEditor({ packs, setPacks, otherPacks = [], onBack }) {
@@ -220,7 +221,10 @@ export default function PackEditor({ packs, setPacks, otherPacks = [], onBack })
               key={pt.src}
               className={`swatch ${img === pt.src ? 'on' : ''}`}
               style={{ backgroundImage: `url('${pt.src}')` }}
-              onClick={() => setImg(pt.src)}
+              onClick={() => {
+                setImg(pt.src)
+                setGrad([pt.g1, pt.g2])
+              }}
               aria-label={pt.label}
               title={pt.label}
             />

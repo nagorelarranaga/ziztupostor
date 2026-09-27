@@ -49,6 +49,7 @@ export default function Reveal({ round, photos = {}, onDone }) {
     <div className="screen center">
       <div
         className={`peek ${show ? 'show' : ''} ${impostor && show ? 'imp' : ''}`}
+        style={show && !impostor && round.g1 ? { borderColor: round.g1 } : undefined}
         onPointerDown={() => reveal(true)}
         onPointerUp={() => reveal(false)}
         onPointerLeave={() => reveal(false)}
