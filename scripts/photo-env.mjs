@@ -3,7 +3,7 @@
 // avatar 256px webp y escribe public/private/vercel-env.txt con todo lo
 // que hay que pegar en Settings → Environment Variables de Vercel.
 // Uso: npm run photoenv
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import sharp from 'sharp'
 
@@ -54,9 +54,11 @@ for (const p of data.players || []) {
     console.warn(`! ${name}: no existe ${file}, se omite`)
     continue
   }
-  const dataUrl = await toDataUrl(file, 256, 75)
-  if (dataUrl.length > 64000) {
-    console.warn(`! ${name}: la foto queda en ${dataUrl.length} caracteres, cerca del límite`)
+  // Vercel limita a ~64KB el TOTAL de variables: los avatares se ven
+  // pequeños (~90px), con 128px y calidad moderada sobra (~4-6KB cada uno).
+  const dataUrl = await toDataUrl(file, 128, 62)
+  if (dataUrl.length > 12000) {
+    console.warn(`! ${name}: la foto queda en ${dataUrl.length} caracteres, demasiado grande`)
   }
   lines.push(`ZIZTU_IMG_${slug(name)}=${dataUrl}`)
   console.log(`${name}: ${img} → ${Math.round(dataUrl.length / 1024)} KB`)
@@ -67,14 +69,14 @@ for (const p of data.players || []) {
 if (data.groupImg) {
   const file = join('public', data.groupImg)
   if (existsSync(file)) {
-    // Vercel limita a ~64KB el TOTAL de variables: reservamos ~44KB para
-    // la foto de grupo (el resto ya ocupa palabras + avatares + código)
+    // Vercel limita a ~64KB el TOTAL de variables: reservamos ~24KB para
+    // la foto de grupo (los ~40KB restantes van a palabras + 7 avatares)
     let dataUrl = null
-    for (const [size, q] of [[520, 58], [460, 55], [420, 52], [400, 50], [340, 50]]) {
+    for (const [size, q] of [[400, 55], [360, 52], [320, 50], [280, 48]]) {
       dataUrl = await toDataUrl(file, size, q, false)
-      if (dataUrl.length <= 44000) break
+      if (dataUrl.length <= 24000) break
     }
-    if (dataUrl.length > 44000) {
+    if (dataUrl.length > 24000) {
       console.warn(`! Foto de grupo: ${dataUrl.length} caracteres, sigue sin caber - recórtala`)
     } else {
       lines.push(`ZIZTU_GROUP_IMG=${dataUrl}`)
@@ -85,5 +87,16 @@ if (data.groupImg) {
 
 const out = join('public', 'private', 'vercel-env.txt')
 writeFileSync(out, lines.join('\n'))
-console.log(`\nListo: ${out}`)
+
+// Copia a prueba de errores: un .txt por variable con solo el valor
+const envDir = join('public', 'private', 'env')
+mkdirSync(envDir, { recursive: true })
+for (const line of lines) {
+  const eq = line.indexOf('=')
+  if (eq > 0 && !line.startsWith('#')) {
+    writeFileSync(join(envDir, `${line.slice(0, eq)}.txt`), line.slice(eq + 1))
+  }
+}
+
+console.log(`\nListo: ${out} y valores sueltos en ${envDir}/`)
 console.log('Pega cada línea como variable de entorno en Vercel y redeploy.')
