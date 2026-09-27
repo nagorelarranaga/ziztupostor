@@ -236,7 +236,12 @@ export default function App() {
       {screen === 'scores' && (
         <Scores
           key="scores"
-          scores={scores}
+          // Solo participantes actuales: quien se quita de la lista, sale del marcador
+          scores={Object.fromEntries(
+            Object.entries(scores).filter(([n]) =>
+              (locked ? guestPlayers : players).includes(n),
+            ),
+          )}
           setScores={setScores}
           onBack={() => setScreen('setup')}
         />
