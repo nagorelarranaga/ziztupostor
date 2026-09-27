@@ -1,12 +1,16 @@
 import { useRef, useState } from 'react'
 
+// Colores distintos de los que ya usan los bloques privados
+// (nude, morado claro, blanco roto, marrón oscuro y azul)
 const GRADIENTS = [
-  ['#c8a684', '#8a6f55'],
   ['#9a9a9c', '#5c5c5e'],
-  ['#d9bdf0', '#9a7ab8'],
-  ['#b8c4b0', '#7a8a72'],
-  ['#a9815e', '#4a3628'],
-  ['#6e9bd8', '#3f66ab'],
+  ['#4a4a4c', '#1c1c1e'],
+  ['#b5bfae', '#77846f'],
+  ['#e3c5c0', '#b08079'],
+  ['#8c5a5a', '#4e2e33'],
+  ['#cbb98a', '#8a7a52'],
+  ['#7f8ea3', '#46536b'],
+  ['#a89ec9', '#6f6394'],
 ]
 
 const PATTERNS = [
@@ -14,6 +18,11 @@ const PATTERNS = [
   { label: 'Disco', src: 'patterns/farri.png' },
   { label: 'Margaritas', src: 'patterns/pertsonak.jpg' },
   { label: 'Mandalas', src: 'patterns/tanger.jpg' },
+  { label: 'Cuadros', src: 'patterns/cuadros.jpg' },
+  { label: 'Estrellas granate', src: 'patterns/estrellas-granate.jpg' },
+  { label: 'Cebra', src: 'patterns/cebra.jpg' },
+  { label: 'Hojas', src: 'patterns/hojas.jpg' },
+  { label: 'Estrellas beige', src: 'patterns/estrellas.png' },
 ]
 
 export default function PackEditor({ packs, setPacks, otherPacks = [], onBack }) {
