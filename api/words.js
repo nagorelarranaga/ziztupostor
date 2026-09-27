@@ -11,6 +11,12 @@ const slug = (s) =>
     .toUpperCase()
     .replace(/[^A-Z0-9]/g, '')
 
+// Límite de intentos por IP: 8 fallos → bloqueada 10 min. El contador vive
+// en la instancia de la función (se reinicia si se reutiliza otra).
+const attempts = globalThis.__zzAttempts || (globalThis.__zzAttempts = new Map())
+const WINDOW_MS = 10 * 60 * 1000
+const MAX_FAILS = 8
+
 export default function handler(req, res) {
   const expected = process.env.ZIZTU_CODE
   const data = process.env.ZIZTU_WORDS
@@ -18,10 +24,25 @@ export default function handler(req, res) {
     res.status(404).json({ error: 'no configurado' })
     return
   }
-  if (!req.query.code || req.query.code !== expected) {
+  const ip = String(req.headers['x-forwarded-for'] || 'anon').split(',')[0].trim()
+  const now = Date.now()
+  const rec = attempts.get(ip) || { n: 0, t: now }
+  if (now - rec.t > WINDOW_MS) {
+    rec.n = 0
+    rec.t = now
+  }
+  if (rec.n >= MAX_FAILS) {
+    res.status(429).json({ error: 'demasiados intentos, espera un rato' })
+    return
+  }
+  const code = String(req.query.code || '').trim()
+  if (code !== expected) {
+    rec.n++
+    attempts.set(ip, rec)
     res.status(401).json({ error: 'código incorrecto' })
     return
   }
+  attempts.delete(ip)
   let parsed
   try {
     // Acepta JSON plano o base64 (este último no se corrompe al pegarlo)
