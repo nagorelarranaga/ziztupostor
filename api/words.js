@@ -22,7 +22,17 @@ export default function handler(req, res) {
     res.status(401).json({ error: 'código incorrecto' })
     return
   }
-  const parsed = JSON.parse(data)
+  let parsed
+  try {
+    // Acepta JSON plano o base64 (este último no se corrompe al pegarlo)
+    const raw = data.trim().startsWith('{')
+      ? data
+      : Buffer.from(data.trim(), 'base64').toString('utf8')
+    parsed = JSON.parse(raw)
+  } catch {
+    res.status(500).json({ error: 'ZIZTU_WORDS no es un JSON válido' })
+    return
+  }
   if (process.env.ZIZTU_GROUP_IMG) parsed.groupImg = process.env.ZIZTU_GROUP_IMG
   if (Array.isArray(parsed.players)) {
     parsed.players = parsed.players.map((p) => {

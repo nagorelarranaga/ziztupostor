@@ -29,7 +29,9 @@ const lines = [
   'ZIZTU_CODE=pon-aqui-vuestro-codigo',
   '',
 ]
-lines.push(`ZIZTU_WORDS=${JSON.stringify(data)}`)
+// En base64: sin llaves ni comillas, imposible de corromper al pegar.
+// El API lo decodifica igualmente.
+lines.push(`ZIZTU_WORDS=${Buffer.from(JSON.stringify(data), 'utf8').toString('base64')}`)
 lines.push('')
 
 async function toDataUrl(file, size, quality, square = true) {
