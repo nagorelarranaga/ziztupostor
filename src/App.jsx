@@ -221,7 +221,10 @@ export default function App() {
           round={round}
           scores={scores}
           onRematch={() => startRound(round.cfg)}
-          onSetup={() => setScreen('setup')}
+          onSetup={() => {
+            setRound(null)
+            setScreen('setup')
+          }}
         />
       )}
       {screen === 'editor' && (
