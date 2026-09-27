@@ -106,7 +106,7 @@ body {
 .bolt-bl {
   bottom: -14px;
   left: -10px;
-  transform: scaleX(-1) rotate(-10deg);
+  transform: rotate(-10deg);
 }
 
 .bolt-imp {
