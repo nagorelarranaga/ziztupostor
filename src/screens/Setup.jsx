@@ -59,6 +59,7 @@ export default function Setup({
         <h1 className="hero-title">
           ZIZTU<span>POSTOR</span>
         </h1>
+        <img className="logo-bolt" src="rayo.png" alt="" />
       </header>
 
       {groupImg && !groupImgErr && (
