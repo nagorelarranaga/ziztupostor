@@ -67,12 +67,14 @@ for (const p of data.players || []) {
 if (data.groupImg) {
   const file = join('public', data.groupImg)
   if (existsSync(file)) {
+    // Vercel limita a ~64KB el TOTAL de variables: reservamos ~44KB para
+    // la foto de grupo (el resto ya ocupa palabras + avatares + código)
     let dataUrl = null
-    for (const [size, q] of [[720, 62], [640, 58], [560, 55], [480, 52], [400, 50]]) {
+    for (const [size, q] of [[520, 58], [460, 55], [420, 52], [400, 50], [340, 50]]) {
       dataUrl = await toDataUrl(file, size, q, false)
-      if (dataUrl.length <= 60000) break
+      if (dataUrl.length <= 44000) break
     }
-    if (dataUrl.length > 60000) {
+    if (dataUrl.length > 44000) {
       console.warn(`! Foto de grupo: ${dataUrl.length} caracteres, sigue sin caber - recórtala`)
     } else {
       lines.push(`ZIZTU_GROUP_IMG=${dataUrl}`)
