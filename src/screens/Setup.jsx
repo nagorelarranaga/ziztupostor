@@ -59,16 +59,19 @@ export default function Setup({
         <h1 className="hero-title">
           ZIZTU<span>POSTOR</span>
         </h1>
-        <img className="logo-bolt" src="rayo.png" alt="" />
       </header>
 
       {groupImg && !groupImgErr && (
-        <img
-          className="group-photo"
-          src={groupImg}
-          alt="ziztubizian"
-          onError={() => setGroupImgErr(true)}
-        />
+        <div className="group-photo-wrap">
+          <img
+            className="group-photo"
+            src={groupImg}
+            alt="ziztubizian"
+            onError={() => setGroupImgErr(true)}
+          />
+          <img className="bolt bolt-tr" src="rayo.png" alt="" />
+          <img className="bolt bolt-bl" src="rayo.png" alt="" />
+        </div>
       )}
 
       <div className="label">Ziztuz · {players.length}</div>

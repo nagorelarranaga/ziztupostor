@@ -89,14 +89,24 @@ body {
   -webkit-user-drag: none;
 }
 
-.logo-bolt {
+.bolt-tr,
+.bolt-bl {
   position: absolute;
-  top: 6px;
-  right: 15%;
-  width: 42px;
-  transform: rotate(9deg);
+  width: 54px;
+  z-index: 2;
   filter: drop-shadow(0 3px 9px rgba(240, 160, 20, 0.45));
-  pointer-events: none;
+}
+
+.bolt-tr {
+  top: -16px;
+  right: -8px;
+  transform: rotate(12deg);
+}
+
+.bolt-bl {
+  bottom: -14px;
+  left: -10px;
+  transform: scaleX(-1) rotate(-10deg);
 }
 
 .bolt-imp {
@@ -147,6 +157,10 @@ body {
   margin: 4px 0 0;
   font-size: 15px;
   color: var(--ink-2);
+}
+
+.group-photo-wrap {
+  position: relative;
 }
 
 .group-photo {
