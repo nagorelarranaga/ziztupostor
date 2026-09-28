@@ -30,6 +30,7 @@ const PATTERNS = [
   { label: 'Fiesta', src: 'patterns/fiesta.jpg', g1: '#e2e2e7', g2: '#43434c' },
   { label: 'Profesiones', src: 'patterns/profesiones.jpg', g1: '#d9cdf0', g2: '#7a5fa8' },
   { label: 'Viajes', src: 'patterns/viajes.png', g1: '#f7cfe0', g2: '#4a7fae' },
+  { label: 'Azulejos', src: 'patterns/albufeira.jpg', g1: '#dfe8f2', g2: '#2d4f9c' },
 ]
 
 export default function PackEditor({ packs, setPacks, otherPacks = [], onBack }) {
