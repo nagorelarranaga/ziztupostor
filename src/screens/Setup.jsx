@@ -192,7 +192,10 @@ export default function Setup({
             }
             onClick={() => setPackId(p.id)}
           >
-            <span className="pack-name">{p.name}</span>
+            <span className="pack-name">
+              {p.flag && <span className="pack-flag">{p.flag}</span>}
+              {p.name}
+            </span>
             <span className="pack-count">
               {p.words.length} {p.words.length === 1 ? 'palabra' : 'palabras'}
             </span>

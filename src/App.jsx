@@ -44,6 +44,7 @@ export default function App() {
           id: pk.id || `priv-${pk.name}`,
           name: titleCase(pk.name) || 'Privado',
           img: pk.img || null,
+          flag: pk.flag || null,
           g1: pk.g1 || DEFAULT_GRADIENT[0],
           g2: pk.g2 || DEFAULT_GRADIENT[1],
           words: (Array.isArray(pk.words) ? pk.words : [])
@@ -162,6 +163,7 @@ export default function App() {
       packName: pack.name,
       packCat: item.cat || pack.name,
       packImg: pack.img || null,
+      packFlag: pack.flag || null,
       g1: pack.g1,
       g2: pack.g2,
       cfg,
